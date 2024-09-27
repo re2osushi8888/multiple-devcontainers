@@ -1,5 +1,15 @@
 version: '1'
 services:
+  db:
+    image: postgres:14
+    container_name: db
+    environment:
+      POSTGRES_USER: local_user
+      POSTGRES_PASSWORD: local_password
+      POSTGRES_DB: local_db
+    networks:
+      - app-network
+
   backend:
     build:
       context: .devcontainer
@@ -7,8 +17,14 @@ services:
     volumes:
       - .:/workspace:cached
     command: sleep infinity
-    links:
-      - frontend
+    environment:
+      DATABASE_URL: postgres://local_user:local_password@db:5432/local_db
+    depends_on:
+      - db
+    networks:
+      - app-network
+    ports:
+      - "8000:8000"
 
   frontend:
     build:
@@ -17,3 +33,13 @@ services:
     volumes:
       - .:/workspace:cached
     command: sleep infinity
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    ports:
+      - "3000:3000"
+
+networks:
+  app-network:
+    driver: bridge
