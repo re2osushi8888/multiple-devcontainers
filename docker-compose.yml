@@ -1,0 +1,19 @@
+version: '1'
+services:
+  backend:
+    build:
+      context: .devcontainer
+      dockerfile: backend/Dockerfile
+    volumes:
+      - .:/workspace:cached
+    command: sleep infinity
+    links:
+      - frontend
+
+  frontend:
+    build:
+      context: .devcontainer
+      dockerfile: frontend/Dockerfile
+    volumes:
+      - .:/workspace:cached
+    command: sleep infinity
