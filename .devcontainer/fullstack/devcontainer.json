@@ -1,0 +1,9 @@
+{
+  "name": "Full-Stack Container",
+  "build": {
+    "context": ".",
+		"dockerfile": "Dockerfile"
+	},
+  "shutdownAction": "none",
+  "workspaceFolder": "/workspaces/multiple-devcontainers"
+}
