@@ -1,0 +1,6 @@
+version: '3.8'
+services:
+  devcontainer:
+    image: mcr.microsoft.com/vscode/devcontainers/base
+    volumes:
+      - ~/.ssh:/home/vscode/.ssh:ro

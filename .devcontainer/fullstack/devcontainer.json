@@ -1,0 +1,10 @@
+{
+  "name": "Full-Stack Container",
+  // "dockerComposeFile": "docker-compose.yml",
+  "build": {
+    "context": ".",
+		"dockerfile": "Dockerfile"
+	},
+  "shutdownAction": "none",
+  "workspaceFolder": "/workspaces/multiple-devcontainers"
+}
